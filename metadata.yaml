@@ -1,0 +1,28 @@
+_repo: The-Story-of-Mormonism-and-The-Philosophy-of-Mormonism_5630
+creator:
+  author:
+    agent_name: Talmage, James E. (James Edward)
+    alias: Talmage, James Edward
+    birthdate: 1862
+    deathdate: 1933
+    gutenberg_agent_id: '1821'
+    url: http://www.gutenberg.org/2009/agents/1821
+    wikipedia: http://en.wikipedia.org/wiki/James_E._Talmage
+description: ''
+gutenberg_bookshelf:
+- Latter Day Saints
+- Christianity
+gutenberg_issued: '2004-05-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '5630'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Mormon Church'
+- !lcc 'BX'
+- !lcsh 'Mormons'
+title: The Story of "Mormonism" and The Philosophy of "Mormonism"
+url: http://www.gutenberg.org/ebooks/5630
