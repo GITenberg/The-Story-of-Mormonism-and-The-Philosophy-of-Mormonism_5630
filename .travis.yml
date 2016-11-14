@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: pTbO74vejpiehqhtTYzazGanSLMVHCD6SZmcF0rIgvI8TKf24LkOtYTj54ZNjUaRen0uG3c+wgQ+B9HN+dXCA/gx7T30NQExky0lF8lSrYNRQ4KgrIiHyUtj5bHftTNEB6yY1J5mlNq/SkcUJlxZLh+oMHuVkw7qyu8WQ9OUy3BG6bxgaNzwto0SKQIjeWvp3YM+IGlKP4whMvEqzpNDqCTEuXJHDEsWQ/erRV7ZruFbjpRNYjd/PQ+bZDd0ne3P7+CEN/Us0Pk7QoCamDMDlEpQIAu2hiI+6d6Q1j+e6SRum2zvmUEgMP29+wlFWKOFRVIxq93B/T6Z2TWHGu2qfxhH94Qg/LBiN6zNVti0VsT6OKKL9xRVZwJ9tdLQegb+Unm7kehwbhKO8ipS6pD/rxc/Mayg7L3xUjA+iv6xc0Fmb8Wtz27jGrYuWRbGzL7bIV0bLrDj4vhIYBd8pjiSrmZomxIsiD0plboQN6K3XtIv4Jy808TwSY1mVKQ0NKnYlxnnlER5HVCpZhoCEMckt6GODe4MDJX6oNjf2jR1P1mrkLgGzK7eWcfG9OS4MF34j9yJvDWSEL0zJheqKoXTqqGAqOCWY3Kv/AWKQ6JX2uZj7PPKPM7yw5+NYHMD47Ox0H+hHrkaG4rxpE6ZjmhkNrtmEW1WW3/CEW7/vF1BOJI=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Story-of-Mormonism-and-The-Philosophy-of-Mormonism_5630
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
