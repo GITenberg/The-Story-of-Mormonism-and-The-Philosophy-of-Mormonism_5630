@@ -1,5 +1,5 @@
 _repo: The-Story-of-Mormonism-and-The-Philosophy-of-Mormonism_5630
-_version: 0.2.0
+_version: 0.2.1
 covers:
 - cover_type: generated
   image_path: cover.png
@@ -30,5 +30,6 @@ subjects:
 - !lcsh 'Mormon Church'
 - !lcc 'BX'
 - !lcsh 'Mormons'
+- GITenberg
 title: The Story of "Mormonism" and The Philosophy of "Mormonism"
 url: http://www.gutenberg.org/ebooks/5630
